@@ -1,0 +1,6 @@
+{
+    "name": "Darkify",
+    "description": "Automatically applys dark mode to any site",
+    "version": "1.0",
+    "manifest_version": 3
+  }
