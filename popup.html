@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    
+    <title>Darkify</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background-color: #080414;
+            padding: 1rem 2rem;
+        }
+        h1{
+            color: white;
+            font-size: 2rem;
+            user-select: none;
+            font-family: 'Righteous', sans-serif;
+            letter-spacing: 2px;
+        }
+        .switch {
+            position: relative;
+            margin-top: 0.5rem;
+            width: 3rem;
+            height: 1.5rem;
+            border: 2px solid white;
+            border-radius: 25px;
+            background: linear-gradient(90deg, rgba(255,217,255) 0%, rgba(255,153,0) 50%, rgba(40,18,107) 50%, rgba(8,4,20) 100%);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        input {
+            opacity: 0;
+            cursor: pointer;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3rem;
+            height: 1.5rem;
+            z-index: 1;
+        }
+        .slider {
+            position: absolute;
+            display: inline-block;
+            top: -0.15rem;
+            left: -0.15rem;
+            border-radius: 25px;
+            height: 1.7rem;
+            width: 2rem;
+            background-color: white;
+            border: 1px solid grey;
+            transition: all 0.5s ease-out;
+        }
+        input:checked + .slider {
+            transform: translateX(55%);
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Darkify</h1>
+    <div class="switch">
+        <input type="checkbox" id="checkbox">
+        <span class="slider"></span>
+        <script src="popup.js"></script>
+    </div>
+  </body>
+</html>
