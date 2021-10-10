@@ -98,5 +98,3 @@ function getOppositeColor(color){
     
     return `rgb(${r}, ${g}, ${b})`
 }
-
-export {isDark, getOppositeColor};
