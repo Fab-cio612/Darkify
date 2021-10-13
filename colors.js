@@ -95,6 +95,11 @@ function getOppositeColor(color){
     v = 100 - v;
 
     let [r, g, b] = HSVtoRGB(h, s, v);
+
+    //avoid black, use slightly lighter color instead
+    if(r == 0 && g == 0 && b == 0){
+        r = g = b = 18;
+    }
     
     return `rgb(${r}, ${g}, ${b})`
 }
