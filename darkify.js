@@ -22,28 +22,35 @@ function getTextDarkness() {
   return darkness;
 }
 
+function applyDarkMode(el){
+  let computedStyle = getComputedStyle(el);
+
+  //change colors
+  if(el.style.color){
+    el.style.color = getOppositeColor(computedStyle.color);
+  }else {
+    el.style.color = '#ffffff'
+  }
+
+  if(el.style.backgroundColor){
+    el.style.backgroundColor = getOppositeColor(computedStyle.backgroundColor);
+  }else {
+    el.style.backgroundColor = '#121212';
+  }
+   //remove shadows
+   el.style.boxShadow = "none";
+
+   //change border
+   let [firstPart, borderColor] = computedStyle.border.split('rgb');
+   if(borderColor) el.style.border = `${firstPart} ${getOppositeColor(borderColor)}`;
+
+   //repeat for children
+   for(let c of el.children){
+     applyDarkMode(c);
+   }
+}
+
 //if in light mode turn every element into dark mode
 if (getTextDarkness() > 0){
-  document.body.querySelectorAll('*').forEach(el => {
-    //change colors
-    let color = getComputedStyle(el).color;
-    let bgColor = getComputedStyle(el).backgroundColor;
-
-    if(el.style.color) {
-      if(isDark(color)) el.style.color = getOppositeColor(color);
-    }else {
-      el.style.color = '#ffffff'
-    }
-    if(el.style.backgroundColor) {
-      if(!isDark(bgColor)) el.style.backgroundColor = getOppositeColor(bgColor);
-    }else {
-      el.style.backgroundColor = '#121212';
-    }
-    //remove shadows
-    el.style.boxShadow = "none";
-
-    //change border
-    let [firstPart, borderColor] = getComputedStyle(el).border.split('rgb');
-    if(borderColor) el.style.border = `${firstPart} ${getOppositeColor(borderColor)}`;
-  });
+  applyDarkMode(document.getElementsByTagName('body')[0]);
 }
